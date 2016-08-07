@@ -9,6 +9,13 @@ int isSafe(int Board[SIZE][SIZE], int row, int col, int num)
 		if(Board[row][mover] == num || Board[mover][col] == num)
 			return 0;
 	//Search in the box
+	int Box_row = (row/3)*3, Box_col = (col/3)*3;
+	int mov_row, mov_col;
+	for(mov_row=Box_row; mov_row<Box_row+3; ++mov_row)
+		for(mov_col=Box_col; mov_col<Box_col+3; ++mov_col)
+			if(Board[mov_row][mov_col] == num)
+				return 0;
+	return 1;
 }
 
 int solve_sudoku(int Board[SIZE][SIZE])
