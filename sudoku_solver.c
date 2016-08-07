@@ -26,11 +26,31 @@ int solve_sudoku(int Board[SIZE][SIZE])
 			if(Board[row][col] == 0) {
 				for(num=1; num<=9; ++num) {
 					if(isSafe(Board, row, col, num)) {
-						//Try that number
+						Board[row][col] = num;
+						if(solve_sudoku(Board) == -1) {
+							Board[row][col] = 0;
+						}
+						else {
+							break;
+						}
 					}
+				}
+				if(Board[row][col] == 0) {
+					return -1;
 				}
 			}	
 		}
+	}
+}
+
+void print(int Board[SIZE][SIZE])
+{
+	int row, col;
+	for(row=0; row<SIZE; ++row) {
+		for(col=0; col<SIZE; ++col) {
+			printf("%3d", Board[row][col]);
+		}
+		printf("\n");
 	}
 }
 
@@ -47,6 +67,9 @@ int main(void)
 				  {0, 0, 0, 4, 1, 9, 0, 0, 5},
 				  {0, 0, 0, 0, 8, 0, 0, 7, 9},	
 				};
-	solve_sudoku(Board);
+	if(solve_sudoku(Board) == -1)
+		printf("Not Solvable!\n");
+	else
+		print(Board);
 	return 0;
 }
