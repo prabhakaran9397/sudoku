@@ -14,9 +14,9 @@ $`cat sudokuquest`
 100302004
 
 ```
-$`gcc sudoku_solver.c -o ss`
+$`gcc sudoku_solver.c`
 
-$`./ss sudokuquest`
+$`./a.out sudokuquest`
 ```
  3 6 9 | 5 7 8 | 2 4 1
  4 7 2 | 9 3 1 | 8 5 6
